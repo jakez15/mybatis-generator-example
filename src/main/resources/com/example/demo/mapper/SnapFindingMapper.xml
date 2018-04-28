@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SnapFindingMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.SnapFinding">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="grouping" jdbcType="VARCHAR" property="grouping" />
+    <result column="characteristic" jdbcType="VARCHAR" property="characteristic" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="finding" jdbcType="VARCHAR" property="finding" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+    <result column="difficult" jdbcType="VARCHAR" property="difficult" />
+    <result column="intermediate" jdbcType="VARCHAR" property="intermediate" />
+    <result column="easy" jdbcType="VARCHAR" property="easy" />
+    <result column="additional_comments" jdbcType="VARCHAR" property="additionalComments" />
+    <result column="snap_finding_result_id" jdbcType="BIGINT" property="snapFindingResultId" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="modified_by" jdbcType="VARCHAR" property="modifiedBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from snap_finding
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.SnapFinding">
+    insert into snap_finding (id, grouping, characteristic, 
+      description, finding, score, 
+      difficult, intermediate, easy, 
+      additional_comments, snap_finding_result_id, 
+      created_date, modified_date, created_by, 
+      modified_by)
+    values (#{id,jdbcType=BIGINT}, #{grouping,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{finding,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{difficult,jdbcType=VARCHAR}, #{intermediate,jdbcType=VARCHAR}, #{easy,jdbcType=VARCHAR}, 
+      #{additionalComments,jdbcType=VARCHAR}, #{snapFindingResultId,jdbcType=BIGINT}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{modifiedBy,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.SnapFinding">
+    update snap_finding
+    set grouping = #{grouping,jdbcType=VARCHAR},
+      characteristic = #{characteristic,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      finding = #{finding,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      difficult = #{difficult,jdbcType=VARCHAR},
+      intermediate = #{intermediate,jdbcType=VARCHAR},
+      easy = #{easy,jdbcType=VARCHAR},
+      additional_comments = #{additionalComments,jdbcType=VARCHAR},
+      snap_finding_result_id = #{snapFindingResultId,jdbcType=BIGINT},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, grouping, characteristic, description, finding, score, difficult, intermediate, 
+    easy, additional_comments, snap_finding_result_id, created_date, modified_date, created_by, 
+    modified_by
+    from snap_finding
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, grouping, characteristic, description, finding, score, difficult, intermediate, 
+    easy, additional_comments, snap_finding_result_id, created_date, modified_date, created_by, 
+    modified_by
+    from snap_finding
+  </select>
+  <cache />
+</mapper>

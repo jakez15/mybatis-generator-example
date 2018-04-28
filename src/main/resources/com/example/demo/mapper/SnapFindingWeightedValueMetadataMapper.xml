@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SnapFindingWeightedValueMetadataMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.SnapFindingWeightedValueMetadata">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="weighted_value" jdbcType="DOUBLE" property="weightedValue" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="modified_by" jdbcType="VARCHAR" property="modifiedBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from snap_finding_weighted_value_metadata
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.SnapFindingWeightedValueMetadata">
+    insert into snap_finding_weighted_value_metadata (id, label, value, 
+      weighted_value, created_date, modified_date, 
+      created_by, modified_by)
+    values (#{id,jdbcType=BIGINT}, #{label,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{weightedValue,jdbcType=DOUBLE}, #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.SnapFindingWeightedValueMetadata">
+    update snap_finding_weighted_value_metadata
+    set label = #{label,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      weighted_value = #{weightedValue,jdbcType=DOUBLE},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, label, value, weighted_value, created_date, modified_date, created_by, 
+    modified_by
+    from snap_finding_weighted_value_metadata
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, label, value, weighted_value, created_date, modified_date, created_by, 
+    modified_by
+    from snap_finding_weighted_value_metadata
+  </select>
+  <cache />
+</mapper>

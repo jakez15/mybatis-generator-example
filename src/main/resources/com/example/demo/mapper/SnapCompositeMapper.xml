@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SnapCompositeMapper">
+    <resultMap id="SnapCompositeMap" type="com.example.demo.entity.SnapComposite">
+        <id column="snapFindingResultId" jdbcType="BIGINT" property="snapFindingResultId"/>
+        <association property="snapFindingResult" javaType="com.example.demo.entity.SnapFindingResult"
+                     resultMap="com.example.demo.mapper.SnapFindingResultMapper.BaseResultMap">
+            <id column="id" jdbcType="BIGINT" property="snap_finding_result_id"/>
+        </association>
+        <collection property="snapFindingList"
+                    javaType="ArrayList"
+                    ofType="com.example.demo.entity.SnapFinding"
+                    resultMap="com.example.demo.mapper.SnapFindingMapper.BaseResultMap">
+
+            <id column="id" jdbcType="BIGINT" property="snap_finding_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="SnapCompositeMap">
+        select
+            snap_finding_result.id as snapFindingResultId,
+            snap_finding_result.id as snap_finding_result_id,
+            snap_finding_result.user,
+            snap_finding_result.application,
+            snap_finding_result.application_type,
+            snap_finding_result.application,
+            snap_finding_result.customer,
+            snap_finding_result.overall_score,
+            snap_finding_result.calc_overall_score,
+            snap_finding_result.manual_override_score,
+            snap_finding_result.manual_override_reason,
+            snap_finding_result.conclusion,
+            snap_finding_result.created_date,
+            snap_finding_result.modified_date,
+            snap_finding_result.created_by,
+            snap_finding_result.modified_by,
+            snap_finding.id        as snap_finding_id,
+            snap_finding.grouping,
+            snap_finding.characteristic,
+            snap_finding.description,
+            snap_finding.finding,
+            snap_finding.score,
+            snap_finding.difficult,
+            snap_finding.intermediate,
+            snap_finding.easy,
+            snap_finding.additional_comments,
+            snap_finding.snap_finding_result_id,
+            snap_finding.created_date,
+            snap_finding.modified_date,
+            snap_finding.created_by,
+            snap_finding.modified_by
+        from snap_finding_result
+            left outer join snap_finding on snap_finding_result.id = snap_finding.snap_finding_result_id
+        where snap_finding_result.id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <cache/>
+</mapper>

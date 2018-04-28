@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="jzingler (generated)" id="1524632851259-1">
+        <createTable tableName="schema_version">
+            <column name="version_rank" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="installed_rank" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="script" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="checksum" type="INT"/>
+            <column name="installed_by" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="installed_on" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="execution_time" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="success" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-2">
+        <createTable tableName="select_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="label" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="snap_finding_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-3">
+        <createTable tableName="snap_finding">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="grouping" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="characteristic" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finding" type="VARCHAR(255)"/>
+            <column name="score" type="VARCHAR(255)"/>
+            <column name="difficult" type="VARCHAR(255)"/>
+            <column name="intermediate" type="VARCHAR(255)"/>
+            <column name="easy" type="VARCHAR(255)"/>
+            <column name="additional_comments" type="VARCHAR(2000)"/>
+            <column name="snap_finding_result_id" type="BIGINT"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="modified_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-4">
+        <createTable tableName="snap_finding_metadata">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grouping" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="characteristic" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="difficult" type="VARCHAR(255)"/>
+            <column name="difficult_value" type="VARCHAR(255)"/>
+            <column name="intermediate" type="VARCHAR(255)"/>
+            <column name="intermediate_value" type="VARCHAR(255)"/>
+            <column name="easy" type="VARCHAR(255)"/>
+            <column name="easy_value" type="VARCHAR(255)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="modified_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-5">
+        <createTable tableName="snap_finding_result">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="application" type="VARCHAR(255)"/>
+            <column name="application_type" type="VARCHAR(255)"/>
+            <column name="customer" type="VARCHAR(255)"/>
+            <column name="overall_score" type="VARCHAR(255)"/>
+            <column name="calc_overall_score" type="DECIMAL(10, 2)"/>
+            <column name="manual_override_score" type="VARCHAR(255)"/>
+            <column name="manual_override_reason" type="VARCHAR(255)"/>
+            <column name="conclusion" type="VARCHAR(255)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="modified_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-6">
+        <createTable tableName="snap_finding_weighted_value_metadata">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="label" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weighted_value" type="DOUBLE"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="modified_date" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-7">
+        <addPrimaryKey columnNames="version" constraintName="PRIMARY" tableName="schema_version"/>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-8">
+        <createIndex indexName="schema_version_ir_idx" tableName="schema_version">
+            <column name="installed_rank"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-9">
+        <createIndex indexName="schema_version_s_idx" tableName="schema_version">
+            <column name="success"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-10">
+        <createIndex indexName="schema_version_vr_idx" tableName="schema_version">
+            <column name="version_rank"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-11">
+        <createIndex indexName="snap_finding_id" tableName="select_item">
+            <column name="snap_finding_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-12">
+        <createIndex indexName="snap_finding_result_id" tableName="snap_finding">
+            <column name="snap_finding_result_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-13">
+        <addForeignKeyConstraint baseColumnNames="snap_finding_id" baseTableName="select_item" constraintName="select_item_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="snap_finding"/>
+    </changeSet>
+    <changeSet author="jzingler (generated)" id="1524632851259-14">
+        <addForeignKeyConstraint baseColumnNames="snap_finding_result_id" baseTableName="snap_finding" constraintName="snap_finding_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="snap_finding_result"/>
+    </changeSet>
+</databaseChangeLog>

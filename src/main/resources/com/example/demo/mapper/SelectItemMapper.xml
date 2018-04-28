@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SelectItemMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.SelectItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="snap_finding_id" jdbcType="BIGINT" property="snapFindingId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from select_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.SelectItem">
+    insert into select_item (id, label, value, 
+      snap_finding_id)
+    values (#{id,jdbcType=BIGINT}, #{label,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{snapFindingId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.SelectItem">
+    update select_item
+    set label = #{label,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      snap_finding_id = #{snapFindingId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, label, value, snap_finding_id
+    from select_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, label, value, snap_finding_id
+    from select_item
+  </select>
+  <cache />
+</mapper>

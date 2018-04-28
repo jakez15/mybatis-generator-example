@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SnapFindingMetadataMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.SnapFindingMetadata">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="grouping" jdbcType="VARCHAR" property="grouping" />
+    <result column="characteristic" jdbcType="VARCHAR" property="characteristic" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="difficult" jdbcType="VARCHAR" property="difficult" />
+    <result column="difficult_value" jdbcType="VARCHAR" property="difficultValue" />
+    <result column="intermediate" jdbcType="VARCHAR" property="intermediate" />
+    <result column="intermediate_value" jdbcType="VARCHAR" property="intermediateValue" />
+    <result column="easy" jdbcType="VARCHAR" property="easy" />
+    <result column="easy_value" jdbcType="VARCHAR" property="easyValue" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="modified_by" jdbcType="VARCHAR" property="modifiedBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from snap_finding_metadata
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.SnapFindingMetadata">
+    insert into snap_finding_metadata (id, type, grouping, 
+      characteristic, description, difficult, 
+      difficult_value, intermediate, intermediate_value, 
+      easy, easy_value, created_date, 
+      modified_date, created_by, modified_by
+      )
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{grouping,jdbcType=VARCHAR}, 
+      #{characteristic,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{difficult,jdbcType=VARCHAR}, 
+      #{difficultValue,jdbcType=VARCHAR}, #{intermediate,jdbcType=VARCHAR}, #{intermediateValue,jdbcType=VARCHAR}, 
+      #{easy,jdbcType=VARCHAR}, #{easyValue,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.SnapFindingMetadata">
+    update snap_finding_metadata
+    set type = #{type,jdbcType=VARCHAR},
+      grouping = #{grouping,jdbcType=VARCHAR},
+      characteristic = #{characteristic,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      difficult = #{difficult,jdbcType=VARCHAR},
+      difficult_value = #{difficultValue,jdbcType=VARCHAR},
+      intermediate = #{intermediate,jdbcType=VARCHAR},
+      intermediate_value = #{intermediateValue,jdbcType=VARCHAR},
+      easy = #{easy,jdbcType=VARCHAR},
+      easy_value = #{easyValue,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, type, grouping, characteristic, description, difficult, difficult_value, 
+    intermediate, intermediate_value, easy, easy_value, created_date, modified_date, 
+    created_by, modified_by
+    from snap_finding_metadata
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, type, grouping, characteristic, description, difficult, difficult_value, 
+    intermediate, intermediate_value, easy, easy_value, created_date, modified_date, 
+    created_by, modified_by
+    from snap_finding_metadata
+  </select>
+  <cache />
+</mapper>
